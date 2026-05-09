@@ -1,0 +1,25 @@
+REFLEXO AGENDA ONLINE V1
+
+Sistema preparado para publicar na nuvem.
+
+TESTE LOCAL:
+npm install
+npm start
+abrir http://localhost:3000
+
+VARIÁVEIS PARA NUVEM:
+DATABASE_URL = conexão PostgreSQL da hospedagem
+APP_CODE = código de acesso do escritório
+DB_SSL = true
+
+RENDER:
+Build command: npm install
+Start command: npm start
+
+RAILWAY:
+Start command: npm start
+Adicionar PostgreSQL e usar DATABASE_URL.
+
+IMPORTANTE:
+Na nuvem use PostgreSQL para não perder dados.
+Sem DATABASE_URL, ele salva em agenda.json local.

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: reflexo-agenda-online
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: APP_CODE
+        value: trocar-este-codigo
+      - key: DB_SSL
+        value: "true"
