@@ -1,5 +1,5 @@
 
-cconst express=require('express'),cors=require('cors'),fs=require('fs'),path=require('path');
+const express=require('express'),cors=require('cors'),fs=require('fs'),path=require('path');
 const {Pool}=require('pg');
 const app=express(),PORT=process.env.PORT||3000,APP_CODE=process.env.APP_CODE||'',DATABASE_URL=process.env.DATABASE_URL||'',DATA_FILE=path.join(__dirname,'agenda.json');
 app.use(cors());app.use(express.json());app.use(express.static(path.join(__dirname,'público')));
