@@ -2,7 +2,7 @@
 const express=require('express'),cors=require('cors'),fs=require('fs'),path=require('path');
 const {Pool}=require('pg');
 const app=express(),PORT=process.env.PORT||3000,APP_CODE=process.env.APP_CODE||'',DATABASE_URL=process.env.DATABASE_URL||'',DATA_FILE=path.join(__dirname,'agenda.json');
-app.use(cors());app.use(express.json());app.use(express.static(path.join(__dirname,'público')));
+app.use(cors());app.use(express.json());app.use(express.static(path.join(__dirname, 'public')));
 let pool=null;if(DATABASE_URL){pool=new Pool({connectionString:DATABASE_URL,ssl:process.env.DB_SSL==='false'?false:{rejectUnauthorized:false}})}
 function requireCode(req,res,next){if(!APP_CODE)return next();if(req.headers['x-app-code']!==APP_CODE)return res.status(401).json({error:'Código inválido'});next()}
 async function initDb(){if(!pool)return;await pool.query(`CREATE TABLE IF NOT EXISTS agendamentos (id BIGSERIAL PRIMARY KEY,cliente TEXT NOT NULL,telefone TEXT NOT NULL,endereco TEXT NOT NULL,servico TEXT NOT NULL,data TEXT NOT NULL,hora TEXT NOT NULL,alerta TEXT NOT NULL,status TEXT NOT NULL,observacoes TEXT DEFAULT '',criado_em TIMESTAMPTZ DEFAULT NOW())`);await pool.query(`ALTER TABLE agendamentos ADD COLUMN IF NOT EXISTS usuario_responsavel TEXT DEFAULT ''`)}
